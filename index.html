@@ -1,58 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>IMDb Redirect</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 100px auto;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMDb Link Converter</title>
 
-        input {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        button {
-            margin-top: 10px;
-            padding: 12px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#121212;
+    color:white;
+    min-height:100vh;
+}
+
+.header{
+    background:#000;
+    padding:18px 30px;
+    border-bottom:2px solid #f5c518;
+}
+
+.logo{
+    display:inline-block;
+    background:#f5c518;
+    color:#000;
+    font-weight:bold;
+    font-size:32px;
+    padding:6px 14px;
+    border-radius:4px;
+}
+
+.hero{
+    max-width:900px;
+    margin:80px auto;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:15px;
+    color:#f5c518;
+}
+
+.hero p{
+    color:#cccccc;
+    font-size:18px;
+    margin-bottom:40px;
+}
+
+.card{
+    background:#1e1e1e;
+    border-radius:16px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.input-group{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+input{
+    flex:1;
+    min-width:250px;
+    padding:16px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    background:#2b2b2b;
+    color:white;
+}
+
+input:focus{
+    outline:none;
+    border:2px solid #f5c518;
+}
+
+button{
+    background:#f5c518;
+    color:#000;
+    border:none;
+    padding:16px 28px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(245,197,24,0.4);
+}
+
+.result{
+    margin-top:25px;
+    background:#2b2b2b;
+    padding:15px;
+    border-radius:10px;
+    word-break:break-all;
+    display:none;
+}
+
+.footer{
+    text-align:center;
+    color:#888;
+    margin-top:100px;
+    padding-bottom:30px;
+}
+
+.movie-icon{
+    font-size:70px;
+    margin-bottom:20px;
+}
+</style>
+
 </head>
 <body>
 
-    <h1>IMDb Redirect Tool</h1>
+<div class="header">
+    <span class="logo">IMDb</span>
+</div>
 
-    <input
-        type="text"
-        id="imdbLink"
-        placeholder="Paste IMDb link here"
-    >
+<div class="hero">
 
-    <button onclick="redirectLink()">
-        Open Movie
-    </button>
+    <div class="movie-icon">🎬</div>
 
-    <script>
-        function redirectLink() {
-            let url = document.getElementById("imdbLink").value.trim();
+    <h1>IMDb Link Converter</h1>
 
-            if (!url.includes("imdb.com")) {
-                alert("Please enter a valid IMDb URL");
-                return;
-            }
+    <p>
+        Paste any IMDb movie or TV show link and instantly open the play version.
+    </p>
 
-            let newUrl = url.replace("www.imdb.com", "www.playimdb.com");
-            newUrl = newUrl.replace("imdb.com", "playimdb.com");
+    <div class="card">
 
-            window.location.href = newUrl;
-        }
-    </script>
+        <div class="input-group">
+            <input
+                type="text"
+                id="imdbLink"
+                placeholder="Paste IMDb URL here..."
+            >
+
+            <button onclick="convertAndRedirect()">
+                ▶ Open Movie
+            </button>
+        </div>
+
+        <div id="result" class="result"></div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    Built for movie lovers 🍿
+</div>
+
+<script>
+
+function convertAndRedirect(){
+
+    const inputUrl =
+        document.getElementById("imdbLink").value.trim();
+
+    if(!inputUrl){
+        alert("Please enter an IMDb URL");
+        return;
+    }
+
+    if(!inputUrl.includes("imdb.com")){
+        alert("Please enter a valid IMDb URL");
+        return;
+    }
+
+    const convertedUrl = inputUrl.replace(
+        "imdb.com",
+        "playplay.imdb.com"
+    );
+
+    const resultBox =
+        document.getElementById("result");
+
+    resultBox.style.display = "block";
+    resultBox.innerHTML =
+        "<strong>Redirecting to:</strong><br><br>" +
+        convertedUrl;
+
+    setTimeout(() => {
+        window.location.href = convertedUrl;
+    }, 1000);
+}
+
+</script>
 
 </body>
 </html>
