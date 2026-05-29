@@ -138,9 +138,12 @@ button:hover{
         <div id="result" class="result"></div>
     </div>
 </div>
+
+<!-- FIX 2: Updated footer name -->
 <div class="footer">
-    Built for movie lovers 🍿
+    Lokesh Rajwani
 </div>
+
 <script>
 function convertAndRedirect(){
     const inputUrl =
@@ -154,7 +157,6 @@ function convertAndRedirect(){
         return;
     }
 
-    // FIX 1: correct domain replacement
     const convertedUrl = inputUrl.replace(
         "www.imdb.com",
         "www.playimdb.com"
@@ -163,9 +165,8 @@ function convertAndRedirect(){
     const resultBox = document.getElementById("result");
     resultBox.style.display = "block";
 
-    // FIX 2: render as markdown-style clickable link [display](href)
+    // FIX 1: No label, just the formatted link directly
     resultBox.innerHTML =
-        "<strong>Converted Link:</strong><br><br>" +
         "[<a href='" + convertedUrl + "' target='_blank'>" + convertedUrl + "</a>](" + inputUrl + ")";
 
     setTimeout(() => {
