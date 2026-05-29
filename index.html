@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IMDb Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>IMDb Redirect Tool</h1>
+
+    <input
+        type="text"
+        id="imdbLink"
+        placeholder="Paste IMDb link here"
+    >
+
+    <button onclick="redirectLink()">
+        Open Movie
+    </button>
+
+    <script>
+        function redirectLink() {
+            let url = document.getElementById("imdbLink").value.trim();
+
+            if (!url.includes("imdb.com")) {
+                alert("Please enter a valid IMDb URL");
+                return;
+            }
+
+            let newUrl = url.replace("www.imdb.com", "www.playimdb.com");
+            newUrl = newUrl.replace("imdb.com", "playimdb.com");
+
+            window.location.href = newUrl;
+        }
+    </script>
+
+</body>
+</html>
