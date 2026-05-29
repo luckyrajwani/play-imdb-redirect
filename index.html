@@ -86,22 +86,6 @@ button:hover{
     transform:translateY(-2px);
     box-shadow:0 5px 15px rgba(245,197,24,0.4);
 }
-.result{
-    margin-top:25px;
-    background:#2b2b2b;
-    padding:15px;
-    border-radius:10px;
-    word-break:break-all;
-    display:none;
-    text-align:left;
-}
-.result a{
-    color:#f5c518;
-    text-decoration:none;
-}
-.result a:hover{
-    text-decoration:underline;
-}
 .footer{
     text-align:center;
     color:#888;
@@ -135,19 +119,14 @@ button:hover{
                 ▶ Open Movie
             </button>
         </div>
-        <div id="result" class="result"></div>
     </div>
 </div>
-
-<!-- FIX 2: Updated footer name -->
 <div class="footer">
     Lokesh Rajwani
 </div>
-
 <script>
 function convertAndRedirect(){
-    const inputUrl =
-        document.getElementById("imdbLink").value.trim();
+    const inputUrl = document.getElementById("imdbLink").value.trim();
     if(!inputUrl){
         alert("Please enter an IMDb URL");
         return;
@@ -156,22 +135,8 @@ function convertAndRedirect(){
         alert("Please enter a valid IMDb URL");
         return;
     }
-
-    const convertedUrl = inputUrl.replace(
-        "www.imdb.com",
-        "www.playimdb.com"
-    );
-
-    const resultBox = document.getElementById("result");
-    resultBox.style.display = "block";
-
-    // FIX 1: No label, just the formatted link directly
-    resultBox.innerHTML =
-        "[<a href='" + convertedUrl + "' target='_blank'>" + convertedUrl + "</a>](" + inputUrl + ")";
-
-    setTimeout(() => {
-        window.open(convertedUrl, "_blank");
-    }, 1000);
+    const convertedUrl = inputUrl.replace("www.imdb.com", "www.playimdb.com");
+    window.open(convertedUrl, "_blank");
 }
 </script>
 </body>
